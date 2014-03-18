@@ -1,0 +1,57 @@
+
+----------------------------------------
+	FILE SYSTEM IMPLEMENTATION
+----------------------------------------
+EXPERIENCES ON IMPLEMENTATON
+------------------------------
+
+1. First step was to understand the FUSE API, and how it works.
+2. Then to study the material related to the FUSE, on the documentation , and function implementation , etc.
+3. Then I took the example and tried to understand at each step what is happening, and how the values are 
+   passed amoung the FUSE API and our implementation.
+4. After understanding the example , I took the program template provided by the TA's to understand the flow 
+   of the data and implemented the few methods such such the getattrs, open, readdir, read.
+5. Upto now I was using the harcoded style to receive the file/folder paths.
+6. Then I conveted the c program into the cpp program , to program in an eficient manner.
+7. Then I formulated the data structure to store the filepaths and the fileproperties(stat) etc.
+8. I have 2 maps
+	map<string, struct memFS_stat *> stat_map;
+	In this one I amd storing the absolute file paths in the string and similar to stat structure.
+	
+	map<string , vector<string> > link_map;
+	here I am using the string for absolute path, vector for its childern file names only.
+9. I also created the struct to store the stat information.
+10. I used the mem_init method , to initialize the data.
+11. I used the command ./<Exexcutable> mount-point , to mount the FS and fusermount -u mount-point to unmount
+
+
+------------------------------------------------
+	TESTING EXPERIENCES
+-----------------------------------------------
+ 
+1. Testing involves executing them in the foreground , and initially I inserted the printf statements
+   to understand the flow of the program.
+2. This was actually very important step becoz all the methods are called by the FUSE API , hence it
+   is very important to understand when ad how they are called.
+3. I also experienced some SEG-FAULTS which were due to the imporper usage of the structures.
+4. Implemented method :
+	_getattr
+	_readdir
+	_open
+	_utimens
+	_read
+	_write
+	_mkdir
+	_rmdir
+	_mknod
+	_access
+	_truncate
+	_symlink
+	_unlink
+
+
+
+
+
+
+
